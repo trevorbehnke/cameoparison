@@ -1,10 +1,18 @@
 <script>
-	export let name;
+	import Welcome from "./screens/welcome.svelte"
+	let state = "welcome"
+
+	const start = e => {
+		console.log(e );
+	}
 </script>
 
 <main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+	{#if state === "welcome"}
+		 <Welcome on:select={start}/>
+	{:else if state === "playing"}
+			<p>This is the game page.</p>
+	{/if}
 </main>
 
 <style>
@@ -13,6 +21,10 @@
 		padding: 1em;
 		max-width: 240px;
 		margin: 0 auto;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
 	}
 
 	h1 {
